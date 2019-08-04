@@ -1,0 +1,101 @@
+CRF：先期可以用人民日报语料库去做，步骤如下:
+https://blog.csdn.net/hudejun007/article/details/38820929 理解CRF++
+http://www.jkeabc.com/303251.html 安装CRF++
+http://zhuanlan.51cto.com/art/201705/540693.htm 工业界一个例子
+https://github.com/lpty/nlp_base/tree/master/ner Github的一个例子
+深度学习：基于TensorFlow的代码实现可以参考：https://github.com/zjy-ucas/ChineseNER
+垂直命名实体识别：先期主要难度在于语料库的匮乏，可以参考医疗领域的命名实体https://github.com/fangwater/Medical-named-entity-recognition-for-ccks2017
+
+（1）命名实体入门
+
+CRF和LSTM 模型在序列标注上的优劣？
+
+https://www.zhihu.com/question/46688107?sort=created
+
+CRF和LSTM的比较
+http://blog.csdn.net/lin370/article/details/52816197
+
+深度学习主流方法：BiLSTM+CRF
+
+入门参考：命名实体识别（NER）的二三事，
+
+http://www.sohu.com/a/148858736_500659
+
+基础却不简单，命名实体识别的难点与现状（垂直领域的难点在于标注预料的匮乏）
+
+https://zhuanlan.zhihu.com/p/26782938
+
+通俗理解BiLSTM-CRF命名实体识别模型中的CRF层
+
+http://www.cnblogs.com/createMoMo/p/7529885.html
+
+命名实体识别训练数据输入格式（需要把数据分词，标注然后根据标记体系标注BMEO成如下形式），然后使用CRF++或参考开源调研的代码：
+
+海 O
+钓 O
+比 O
+赛 O
+地 O
+点 O
+在 O
+厦 B-LOC
+门 I-LOC
+与 O
+金 B-LOC
+门 I-LOC
+
+（2）命名实体识别开源调研如下：
+
+1, https://github.com/Hironsan/anago
+
+可以换成中文预料就可以训练，bidirectional LSTM + CRF
+
+2，https://github.com/ljingsheng/Named-Entity-Recognition
+
+语料来自人民日报预料，keras，LSTM
+
+3，https://github.com/zjy-ucas/ChineseNER
+
+bidirectional LSTM + CRF tensorflow（其中的conlleval代码可以用来评测命名实体识别结果，参考https://blog.argcv.com/articles/2104.c）
+
+4, https://github.com/crownpku/Information-Extraction-Chinese/tree/master/NER_IDCNN_CRF
+
+Chinese Named Entity Recognition using IDCNN/biLSTM+CRF TensorFlow
+
+5, （优先阅读）https://github.com/Determined22/zh-NER-TF
+BiLSTM-CRF TensorFlow 文章参考：http://www.cnblogs.com/Determined22/p/7238342.html
+
+6, https://github.com/fangwater/Medical-named-entity-recognition-for-ccks2017
+
+医疗领域命名实体 A LSTM+CRF model for the seq2seq task for Medical named entity recognition in ccks2017
+
+7，达观数据如何打造一个中文NER系统（传统CRF）
+
+CRF打造的命名实体系统
+
+8，BILSTM-CRF在命名实体识别NER上的应用
+
+https://github.com/guillaumegenthial/sequence_tagging
+
+https://guillaumegenthial.github.io/sequence-tagging-with-tensorflow.html
+
+https://mp.weixin.qq.com/s?src=11&timestamp=1507706758&ver=445&signature=W71hFyMaaTnzLv5utt24BJQ9bSFndQzCDqFeg6Dg2ACdD0y3nlFDHNazDzzQees8VN21cbcUlXYBSN9AFJ7tNWX4ZJ2O-pj71Rhcc4ReX09HdLrk40whV09ojT9Jbsi*&new=1
+
+9，CRF有用的Github
+
+9.1，一个使用条件随机场的中文命名实体识别模型（用sklearn_crfsuite,用人民日报语料）
+https://github.com/lpty/nlp_base/tree/master/ner
+https://blog.csdn.net/sinat_33741547/article/details/79131223
+
+9.2，CRF++ 实现中文分词 ( 有把分词转换为CRF格式的代码以及调用举例的特征模板）
+http://www.stay-stupid.com/?p=224
+https://github.com/ictlyh/CRFSegment
+中文分词工具测评
+http://rsarxiv.github.io/2016/11/29/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%B7%A5%E5%85%B7%E6%B5%8B%E8%AF%84/
+http://sighan.cs.uchicago.edu/bakeoff2005/
+
+重要：命名实体现有可用训练数据以及人民日报语料库
+https://github.com/hltcoe/golden-horse/tree/master/data
+
+有CRF PPT介绍 CRF++模型格式说明
+http://www.hankcs.com/nlp/the-crf-model-format-description.html
